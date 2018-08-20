@@ -1,0 +1,9 @@
+{
+    "builders": [
+        "type": "virtualbox-ovf",
+        "source_path": "source_al2.ova",
+        "target_path": "base_al2.ova",
+        "communicator": "ssh",
+        "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+    ]
+}

@@ -1,0 +1,5 @@
+users:
+  -defualt
+chpasswd:
+  list:
+    ec2-user:temp_pass
