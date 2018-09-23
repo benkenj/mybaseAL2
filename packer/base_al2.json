@@ -8,15 +8,18 @@
             "communicator": "ssh",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
-            "ssh_port": 22,
+            "ssh_private_key_file": "vagrant.pem",
             "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
             "checksum": "7d5e55767b6338c99505a00c7601b17c74112350422a1b4891d61a4f673437e9",
             "checksum_type": "sha256",
             "headless": true,
             "vboxmanage": [
                 [ "modifyvm", "{{.Name}}", "--memory", "4096"],
-         
-                [ "modifyvm", "{{.Name}}", "--nic1", "nat"]
+                [ "modifyvm", "{{.Name}}", "--nic1", "nat"],
+                [ "modifyvm", "{{.Name}}", "--nictype1", "82540EM"], 
+                [ "modifyvm", "{{.Name}}", "--natpf1", "ssh,tcp,127.0.0.1,2222,,22"],
+                [ "storagectl", "{{.Name}}", "--name", "Sata Controller", "--add", "sata", "--controller", "IntelAHCI"],
+                [ "storageattach", "{{.Name}}", "--storagectl", "Sata Controller", "--port", "0", "--device", "0", "--medium", "seed.iso", "--type", "dvddrive"]
             ]
         }
     ],
