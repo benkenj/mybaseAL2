@@ -51,4 +51,3 @@ runcmd:
 
   # Make it look like RedHat
   - ln -s /etc/system-release /etc/redhat-release
-
